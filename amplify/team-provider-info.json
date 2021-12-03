@@ -27,7 +27,8 @@
       "UnauthRoleName": "amplify-createreactappautham-dev-130508-unauthRole",
       "StackName": "amplify-createreactappautham-dev-130508",
       "StackId": "arn:aws:cloudformation:eu-west-1:414539562332:stack/amplify-createreactappautham-dev-130508/18766800-5368-11ec-a9ba-06884cd2782b",
-      "AmplifyAppId": "d9frje9v5neit"
+      "AmplifyAppId": "d9frje9v5neit",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-createreactappautham-dev-130508-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
@@ -37,6 +38,24 @@
         "test": {
           "deploymentBucketName": "amplify-createreactappautham-dev-130508-deployment",
           "s3Key": "amplify-builds/test-54466a5973696530486b-build.zip"
+        },
+        "retrieveUsers": {
+          "deploymentBucketName": "amplify-createreactappautham-dev-130508-deployment",
+          "s3Key": "amplify-builds/retrieveUsers-4f4c30756639394b4254-build.zip"
+        },
+        "createreactappauthamtestLayer": {
+          "deploymentBucketName": "amplify-createreactappautham-dev-130508-deployment",
+          "s3Key": "amplify-builds/createreactappauthamtestLayer-LambdaLayerVersionbc9c7b6e-build.zip"
+        }
+      },
+      "storage": {
+        "testuseruserTable": {
+          "tableName": "test-user_userTable",
+          "region": "eu-west-1",
+          "arn": "arn:aws:dynamodb:eu-west-1:414539562332:table/test-user_userTable",
+          "streamArn": "arn:aws:dynamodb:eu-west-1:414539562332:table/test-user_userTable/stream/2018-03-30T12:37:29.152",
+          "partitionKeyName": "user_id",
+          "partitionKeyType": "S"
         }
       }
     }

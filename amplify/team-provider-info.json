@@ -39,10 +39,6 @@
           "deploymentBucketName": "amplify-createreactappautham-dev-130508-deployment",
           "s3Key": "amplify-builds/createreactappauthamtestLayer-LambdaLayerVersion4627c6a5-build.zip"
         },
-        "postgresConnectionTest": {
-          "deploymentBucketName": "amplify-createreactappautham-dev-130508-deployment",
-          "s3Key": "amplify-builds/postgresConnectionTest-4b727672452f6d376344-build.zip"
-        },
         "retrieveUser": {
           "deploymentBucketName": "amplify-createreactappautham-dev-130508-deployment",
           "s3Key": "amplify-builds/retrieveUser-305573395a7a34725131-build.zip"

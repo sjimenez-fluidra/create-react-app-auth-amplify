@@ -11,11 +11,6 @@
       "service": "LambdaLayer",
       "build": true
     },
-    "postgresConnectionTest": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "retrieveUser": {
       "build": true,
       "providerPlugin": "awscloudformation",

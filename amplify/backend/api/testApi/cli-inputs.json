@@ -1,9 +1,29 @@
 {
   "version": 1,
   "paths": {
-    "/users": {
-      "name": "/users",
-      "lambdaFunction": "retrieveUsers",
+    "/user": {
+      "name": "/user",
+      "lambdaFunction": "retrieveUser",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "read"
+        ]
+      }
+    },
+    "/subscription": {
+      "name": "/subscription",
+      "lambdaFunction": "retrieveUserSubscription",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "read"
+        ]
+      }
+    },
+    "/pools": {
+      "name": "/pools",
+      "lambdaFunction": "retrieveUserPools",
       "permissions": {
         "setting": "private",
         "auth": [

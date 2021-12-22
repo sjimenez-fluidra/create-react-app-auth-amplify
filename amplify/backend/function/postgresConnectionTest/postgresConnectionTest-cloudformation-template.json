@@ -15,18 +15,6 @@
     },
     "s3Key": {
       "Type": "String"
-    },
-    "storagetestuseruserTableName": {
-      "Type": "String",
-      "Default": "storagetestuseruserTableName"
-    },
-    "storagetestuseruserTableArn": {
-      "Type": "String",
-      "Default": "storagetestuseruserTableArn"
-    },
-    "functioncreatereactappauthamtestLayerArn": {
-      "Type": "String",
-      "Default": "functioncreatereactappauthamtestLayerArn"
     }
   },
   "Conditions": {
@@ -59,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "retrieveUsers",
+            "postgresConnectionTest",
             {
               "Fn::Join": [
                 "",
                 [
-                  "retrieveUsers",
+                  "postgresConnectionTest",
                   "-",
                   {
                     "Ref": "env"
@@ -91,12 +79,16 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [
-          {
-            "Ref": "functioncreatereactappauthamtestLayerArn"
-          }
-        ],
-        "Timeout": 25
+        "Layers": [],
+        "Timeout": 25,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            "sg-2cab9e54"
+          ],
+          "SubnetIds": [
+            "subnet-0a6add31bb2a7a242"
+          ]
+        }
       }
     },
     "LambdaExecutionRole": {
@@ -105,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "createreactappauthamLambdaRole829b98e9",
+            "createreactappauthamLambdaRole93a9ec52",
             {
               "Fn::Join": [
                 "",
                 [
-                  "createreactappauthamLambdaRole829b98e9",
+                  "createreactappauthamLambdaRole93a9ec52",
                   "-",
                   {
                     "Ref": "env"
@@ -180,30 +172,11 @@
             {
               "Effect": "Allow",
               "Action": [
-                "dynamodb:DescribeTable",
-                "dynamodb:GetItem",
-                "dynamodb:Query",
-                "dynamodb:Scan",
-                "dynamodb:PutItem",
-                "dynamodb:UpdateItem",
-                "dynamodb:DeleteItem"
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface"
               ],
-              "Resource": [
-                {
-                  "Ref": "storagetestuseruserTableArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagetestuseruserTableArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
+              "Resource": "*"
             }
           ]
         }

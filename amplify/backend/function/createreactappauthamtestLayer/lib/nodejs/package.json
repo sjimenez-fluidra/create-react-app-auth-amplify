@@ -3,7 +3,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "aws-sdk": "^2.1042.0"
+    "aws-sdk": "^2.1042.0",
+    "pg": "^8.7.1"
   },
   "devDependencies": {}
 }

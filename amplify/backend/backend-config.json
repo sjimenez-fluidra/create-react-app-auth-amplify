@@ -6,12 +6,17 @@
     }
   },
   "function": {
-    "test": {
+    "createreactappauthamtestLayer": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
+    },
+    "postgresConnectionTest": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "retrieveUsers": {
+    "retrieveUser": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
@@ -22,25 +27,36 @@
           "attributes": [
             "Arn"
           ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "testuseruserTable",
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "attributeEnvMap": {
-            "Name": "TABLE_NAME",
-            "Arn": "TABLE_ARN"
-          }
         }
       ]
     },
-    "createreactappauthamtestLayer": {
+    "retrieveUserSubscription": {
+      "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer",
-      "build": true
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "createreactappauthamtestLayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "retrieveUserPools": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "createreactappauthamtestLayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "storage": {
@@ -58,7 +74,23 @@
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "retrieveUsers",
+          "resourceName": "retrieveUser",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "retrieveUserSubscription",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "retrieveUserPools",
           "attributes": [
             "Name",
             "Arn"

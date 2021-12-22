@@ -88,15 +88,7 @@
             "Ref": "functioncreatereactappauthamtestLayerArn"
           }
         ],
-        "Timeout": 25,
-        "VpcConfig": {
-          "SecurityGroupIds": [
-            "sg-2cab9e54"
-          ],
-          "SubnetIds": [
-            "subnet-0a6add31bb2a7a242"
-          ]
-        }
+        "Timeout": 25
       }
     },
     "LambdaExecutionRole": {

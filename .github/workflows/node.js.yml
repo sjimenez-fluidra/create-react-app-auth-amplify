@@ -17,8 +17,15 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             return context.payload.ref.replace(/\/refs\/tags\//, '');
+      - name: Extract context
+        id: context
+        uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            return context;
       - name: 'show context'
-        run: echo ${{ context }}
+        run: echo ${{  steps.context.outputs.result }}
       - name: 'Call API'
         uses: indiesdev/curl@v1
         id: api

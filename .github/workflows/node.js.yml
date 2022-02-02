@@ -10,22 +10,20 @@ jobs:
     if: ${{ startsWith(github.ref, 'refs/tags/v') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Extract tag name
+      - name: Extract tag
         id: tag
         uses: actions/github-script@0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             return context.payload.ref.replace(/\/refs\/tags\//, '');
-      - name: Extract context
-        id: context
+      - name: Extract sha
+        id: sha
         uses: actions/github-script@0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            return context;
-      - name: 'show context'
-        run: echo ${{  steps.context.outputs.result }}
+            return context.payload.sha;
       - name: 'Call API'
         uses: indiesdev/curl@v1
         id: api
@@ -33,7 +31,7 @@ jobs:
           url: https://j7g0n43xu7.execute-api.eu-west-1.amazonaws.com/test/blue/version
           method: 'POST'
           accept: 200
-          body: "{ \"component\": \"\",  \"githash\": \"\", \"version\": \"${{ steps.tag.outputs.result }}\" }"
+          body: "{ \"component\": \"test\",  \"githash\": \"${{ steps.sha.outputs.result }}\", \"version\": \"${{ steps.tag.outputs.result }}\" }"
       - name: 'Use response'
         run: echo ${{ steps.api.outputs.response }}
 

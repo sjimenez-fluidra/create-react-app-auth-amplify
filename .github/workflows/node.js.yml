@@ -31,7 +31,7 @@ jobs:
           url: https://j7g0n43xu7.execute-api.eu-west-1.amazonaws.com/test/blue/version
           method: 'POST'
           accept: 200
-          body: "{ \"component\": \"test\",  \"githash\": ${{ steps.sha.outputs.result }}, \"version\": ${{ steps.tag.outputs.result }} }"
+          body: "{ \"component\": \"test\",  \"gitHash\": ${{ steps.sha.outputs.result }}, \"version\": ${{ steps.tag.outputs.result }} }"
       - name: 'Use response'
         run: echo ${{ steps.api.outputs.response }}
 
